@@ -23,7 +23,8 @@ Bundle  'kien/rainbow_parentheses.vim'
 Bundle  'ervandew/supertab'
 Bundle  'tsaleh/vim-matchit'
 Bundle  'Lokaltog/vim-easymotion'
-Bundle  'Lokaltog/powerline'
+" powerline is installed on the system
+" Bundle  'Lokaltog/powerline'
 Bundle  'stephenmckinney/vim-solarized-powerline'
 " Bundle    'noahfrederick/Hemisu'
 Bundle  'vim-scripts/scons.vim'
@@ -58,6 +59,7 @@ filetype plugin indent on     " required!
     set background=dark " we plan to use a dark background
     "colorscheme solarized
 
+    " Change color after line 80
     let &colorcolumn=join(range(81,999),",")
     highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
@@ -248,34 +250,18 @@ filetype plugin indent on     " required!
 """"""""""""""""""
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+" Press <F5> to purge the cache for the current directory to get new files,
+" remove deleted files and apply new ignore options.
+" Press <c-f> and <c-b> to cycle between modes.
+" Press <c-d> to switch to filename only search instead of full path.
+" Press <c-r> to switch to regexp mode.
+" Use <c-j>, <c-k> or the arrow keys to navigate the result list.
+" Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new
+" split.
+" Use <c-n>, <c-p> to select the next/previous string in the prompt's history.
+" Use <c-y> to create a new file and its parent directories.
+" Use <c-z> to mark/unmark multiple files and <c-o> to open them.
 
-
-""""""""""""""""""""""""""""""""""""""""
-" TagList/CTags
-""""""""""""""""""""""""""""""""""""""""
-"    "let Tlist_Auto_Open=0 " let the tag list open automagically
-"    let Tlist_Compact_Format = 1 " show small menu
-"    "let Tlist_Ctags_Cmd = 'ctags' " location of ctags
-"    "let Tlist_Enable_Fold_Column = 1 " do show folding tree
-"    let Tlist_Exit_OnlyWindow = 1 " if you are the last, kill yourself
-"    "let Tlist_File_Fold_Auto_Close = 0 " fold closed other trees
-"    let Tlist_Show_One_File = 1 " Only show tags for current buffer
-"    let Tlist_Sort_Type = "order" " order by
-"    let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-"    "let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always)
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Omni Completion
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set completeopt=menu "default ='menu,preview'
-"autocmd FileType python set omnifunc=pythoncomplete#Complete
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType c set omnifunc=ccomplete#Complete
-"autocmd FileType cpp set omnifunc=cppcomplete#Complete
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
