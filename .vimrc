@@ -9,30 +9,31 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
-Bundle	'majutsushi/tagbar'
+Bundle  'majutsushi/tagbar'
 Bundle  'scrooloose/nerdtree'
-Bundle	'fholgado/minibufexpl.vim'
-Bundle	'kien/ctrlp.vim'
-Bundle	'tpope/vim-fugitive  '
-Bundle	'msanders/snipmate.vim'
-Bundle	'rstacruz/sparkup'
-Bundle	'tpope/vim-surround'
-Bundle	'tpope/vim-repeat'
-Bundle	'kien/rainbow_parentheses.vim'
-Bundle	'ervandew/supertab'
-Bundle	'tsaleh/vim-matchit'
-Bundle	'vim-easymotion'
-Bundle	'Lokaltog/powerline'
-Bundle	'stephenmckinney/vim-solarized-powerline'
-" Bundle	'noahfrederick/Hemisu'
-Bundle	'vim-scripts/scons.vim'
-Bundle	'vim-scripts/django.vim'
+" Bundle  'fholgado/minibufexpl.vim'
+Bundle  'scrooloose/syntastic'
+Bundle  'kien/ctrlp.vim'
+Bundle  'tpope/vim-fugitive'
+Bundle  'msanders/snipmate.vim'
+Bundle  'rstacruz/sparkup'
+Bundle  'tpope/vim-surround'
+Bundle  'tpope/vim-repeat'
+Bundle  'kien/rainbow_parentheses.vim'
+Bundle  'ervandew/supertab'
+Bundle  'tsaleh/vim-matchit'
+Bundle  'Lokaltog/vim-easymotion'
+Bundle  'Lokaltog/powerline'
+Bundle  'stephenmckinney/vim-solarized-powerline'
+" Bundle    'noahfrederick/Hemisu'
+Bundle  'vim-scripts/scons.vim'
+Bundle  'vim-scripts/django.vim'
 
-Bundle	'kshenoy/vim-signature'
-Bundle	'honza/vim-snippets'
-Bundle	'vim-scripts/LanguageTool'
-Bundle	'sjl/gundo.vim'
-Bundle	'vim-scripts/Smartput'
+" Bundle    'kshenoy/vim-signature'
+" Bundle    'honza/vim-snippets'
+" Bundle    'vim-scripts/LanguageTool'
+" Bundle    'sjl/gundo.vim'
+" Bundle    'vim-scripts/Smartput'
 
 filetype plugin indent on     " required!
 "
@@ -45,7 +46,7 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed.
 
-  
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basics
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,7 +56,7 @@ filetype plugin indent on     " required!
     ""highlight Normal
     ""let g:solarized_termcolors=256
     set background=dark " we plan to use a dark background
-    colorscheme solarized
+    "colorscheme solarized
 
     let &colorcolumn=join(range(81,999),",")
     highlight ColorColumn ctermbg=235 guibg=#2c2d27
@@ -243,51 +244,45 @@ filetype plugin indent on     " required!
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""""""""""
-" MiniBufExpl
-""""""""""""""""""""""""""""""""""""""""
-    "let g:miniBufExplMapWindowNavVim = 1
-    "let g:miniBufExplMapWindowNavArrows = 1
-    "let g:miniBufExplMapCTabSwitchBufs = 1
-    "let g:miniBufExplModSelTarget = 1
-    "control + the vim direction keys [hjkl] move you between windows
-    "control + arrow keys can be made to do the same thing
-    "control + tab & shift + control + tab switch through your open windows
-    "control + tab & shift + control + tab can alternatively be setup to cycle forwards and backwards through your modifiable buffers in the current window 
+" kien/ctrlp.vim "
+""""""""""""""""""
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
 
 """"""""""""""""""""""""""""""""""""""""
 " TagList/CTags
 """"""""""""""""""""""""""""""""""""""""
-    "let Tlist_Auto_Open=0 " let the tag list open automagically
-    let Tlist_Compact_Format = 1 " show small menu
-    "let Tlist_Ctags_Cmd = 'ctags' " location of ctags
-    "let Tlist_Enable_Fold_Column = 1 " do show folding tree
-    let Tlist_Exit_OnlyWindow = 1 " if you are the last, kill yourself
-    "let Tlist_File_Fold_Auto_Close = 0 " fold closed other trees
-    let Tlist_Show_One_File = 1 " Only show tags for current buffer
-    let Tlist_Sort_Type = "order" " order by
-    let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-    "let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always)
+"    "let Tlist_Auto_Open=0 " let the tag list open automagically
+"    let Tlist_Compact_Format = 1 " show small menu
+"    "let Tlist_Ctags_Cmd = 'ctags' " location of ctags
+"    "let Tlist_Enable_Fold_Column = 1 " do show folding tree
+"    let Tlist_Exit_OnlyWindow = 1 " if you are the last, kill yourself
+"    "let Tlist_File_Fold_Auto_Close = 0 " fold closed other trees
+"    let Tlist_Show_One_File = 1 " Only show tags for current buffer
+"    let Tlist_Sort_Type = "order" " order by
+"    let Tlist_Use_Right_Window = 1 " split to the right side of the screen
+"    "let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Omni Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=menu "default ='menu,preview'
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType cpp set omnifunc=cppcomplete#Complete
+"set completeopt=menu "default ='menu,preview'
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType c set omnifunc=ccomplete#Complete
+"autocmd FileType cpp set omnifunc=cppcomplete#Complete
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F1> :NERDTreeToggle<CR>
 nnoremap <F2> :buffers<CR>:buffer<Space>
-nnoremap <F3> :!ctags -R<cr>
+"nnoremap <F3> :!ctags -R<cr>
 map <F4> :w!<CR>:!aspell check %<CR>:e! %<CR> " Spellcheck
 map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR> " Run in python
 set pastetoggle=<F6> " Paste Mode
@@ -310,23 +305,29 @@ nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 nmap <silent> <leader><space> :nohlsearch<CR>
 " break line at cursor
 nmap <silent> <leader><CR> i<CR><ESC>
+
+" Add line before/after
 nmap <silent> <leader>o o<ESC>
 nmap <silent> <leader>O O<ESC>
+
+" Copy to clipboard
 noremap <leader>y "+y
 noremap <leader>Y "+Y
 noremap <leader>p "+p
 noremap <leader>P "+P
 
 " Moving Windows
-"map <c-j> <c-w>j
-"map <c-k> <c-w>k
-"map <c-l> <c-w>l
-"map <c-h> <c-w>h
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 ":help key-notation
 "set winaltkeys=no
 " Moving Buffers
-map <c-b>h :bp<CR>
-map <c-b>l :bn<CR>
+map <leader>h :bp<CR>
+map <leader>l :bn<CR>
+"map <c-b>h :bp<CR>
+"map <c-b>l :bn<CR>
 " Moving Tabs
 "map <c-t>h :tabp<CR>
 "map <c-t>l :tabn<CR>
@@ -335,7 +336,7 @@ map <c-b>l :bn<CR>
 nnoremap ; :
 nnoremap ç :
 " use jj to quickly escape to normal mode while typing 
-""inoremap jj <ESC>
+inoremap jj <ESC>
 
 "" When tiping and we press Shift to long
 command W w
@@ -351,4 +352,3 @@ au BufRead,BufNewFile *.md set filetype=markdown
 au BufNewFile,BufRead SCons* set filetype=scons
 
 
-" map <F4> :ls<CR>:buffer<space> 

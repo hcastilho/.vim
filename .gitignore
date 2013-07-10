@@ -1,1 +1,4 @@
 .netrwhis
+
+bundle/
+!bundle/vundle
