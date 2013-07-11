@@ -9,26 +9,35 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles
-Bundle  'majutsushi/tagbar'
-Bundle  'scrooloose/nerdtree'
-" Bundle  'fholgado/minibufexpl.vim'
-Bundle  'scrooloose/syntastic'
-Bundle  'kien/ctrlp.vim'
-Bundle  'tpope/vim-fugitive'
-Bundle  'msanders/snipmate.vim'
-Bundle  'rstacruz/sparkup'
-Bundle  'tpope/vim-surround'
-Bundle  'tpope/vim-repeat'
-Bundle  'kien/rainbow_parentheses.vim'
+Bundle  'altercation/vim-colors-solarized'
 Bundle  'ervandew/supertab'
-Bundle  'tsaleh/vim-matchit'
-Bundle  'Lokaltog/vim-easymotion'
+" Bundle  'fholgado/minibufexpl.vim'
+Bundle  'kien/ctrlp.vim'
+"Bundle  'kien/rainbow_parentheses.vim'
+Bundle  'oblitum/rainbow'
+Bundle  'jansenm/vim-cmake'
 " powerline is installed on the system
 " Bundle  'Lokaltog/powerline'
-Bundle  'stephenmckinney/vim-solarized-powerline'
+Bundle  'Lokaltog/vim-easymotion'
+Bundle  'majutsushi/tagbar'
+Bundle  'msanders/snipmate.vim'
 " Bundle    'noahfrederick/Hemisu'
-Bundle  'vim-scripts/scons.vim'
+Bundle  'plasticboy/vim-markdown'
+" Bundle  'tpope/vim-markdown'
+Bundle  'rstacruz/sparkup'
+Bundle  'scrooloose/nerdtree'
+Bundle  'scrooloose/syntastic'
+" Bundle  'stephenmckinney/vim-solarized-powerline'
+Bundle  'Townk/vim-autoclose'
+Bundle  'tpope/vim-fugitive'
+Bundle  'tpope/vim-repeat'
+Bundle  'tpope/vim-surround'
+Bundle  'tsaleh/vim-matchit'
 Bundle  'vim-scripts/django.vim'
+Bundle  'vim-scripts/scons.vim'
+Bundle  'vim-scripts/c.vim'
+Bundle  'vim-scripts/python.vim'
+"Bundle  'vim-jp/cpp-vim'
 
 " Bundle    'kshenoy/vim-signature'
 " Bundle    'honza/vim-snippets'
@@ -55,9 +64,9 @@ filetype plugin indent on     " required!
     set nocompatible " get out of vi-compatible mode
     set noexrc " don't use local version of .(g)vimrc, .exrc
     ""highlight Normal
-    ""let g:solarized_termcolors=256
+    "let g:solarized_termcolors=256
     set background=dark " we plan to use a dark background
-    "colorscheme solarized
+    colorscheme solarized
 
     " Change color after line 80
     let &colorcolumn=join(range(81,999),",")
@@ -232,19 +241,18 @@ filetype plugin indent on     " required!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    ""set foldenable " Turn on folding
-    ""set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
-    ""set foldmethod=marker " Fold on the marker
-    ""set foldlevel=100 " Don't autofold anything (but I can still fold manually)
-    ""set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
-    ""function SimpleFoldText() " {
-    ""return getline(v:foldstart).' '
-    ""endfunction " }
-    ""set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
+    set foldmethod=syntax
+    set foldenable
+    set foldlevel=100
+    "let g:vimsyn_folding='af'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ervandew/supertab "
+"""""""""""""""""""""
+" Tab
 
 " kien/ctrlp.vim "
 """"""""""""""""""
@@ -262,7 +270,52 @@ let g:ctrlp_cmd = 'CtrlP'
 " Use <c-y> to create a new file and its parent directories.
 " Use <c-z> to mark/unmark multiple files and <c-o> to open them.
 
+" kian/rainbow_parentheses.vim "
+""""""""""""""""""""""""""""""""
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
+"Lokaltog/vim-easymotion"
+"""""""""""""""""""""""""
+" \\
+
+" majutsushi/tagbar "
+"""""""""""""""""""""
+" See mappings
+
+" msanders/snipmate.vim "
+"""""""""""""""""""""""""
+" rstacruz/sparkup "
+""""""""""""""""""""
+
+" scrooloose/nerdtree"
+"""""""""""""""""""""
+" See mappings
+
+" scrooloose/syntastic "
+""""""""""""""""""""""""
+" See mappings
+let g:syntastic_mode_map = { 'mode': 'passive',
+                            \ 'active_filetypes': [],
+                            \ 'passive_filetypes': [] }
+
+" tpope/vim-fugitive "
+""""""""""""""""""""""
+
+" tpope/vim-repeat "
+""""""""""""""""""""
+
+" tpope/vim-surround "
+""""""""""""""""""""""
+
+" tsaleh/vim-matchit "
+""""""""""""""""""""""
+
+
+
+
+let g:vim_markdown_folding_disabled=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,21 +325,15 @@ nnoremap <F2> :buffers<CR>:buffer<Space>
 map <F4> :w!<CR>:!aspell check %<CR>:e! %<CR> " Spellcheck
 map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR> " Run in python
 set pastetoggle=<F6> " Paste Mode
-
-let g:syntastic_mode_map = { 'mode': 'passive',
-                            \ 'active_filetypes': [],
-                            \ 'passive_filetypes': [] }
 nmap <F7> :SyntasticCheck<CR>
-
 nmap <F8> :TagbarToggle<CR>
+nmap <F9> :RainbowParenthesesToggle<CR>
 
 " Toggle display of toolbars in gvim
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
-"map <buffer> gd /def <C-R><C-W><CR> 
-"
 " pressing \<space> clears the search highlights
 nmap <silent> <leader><space> :nohlsearch<CR>
 " break line at cursor
@@ -312,11 +359,6 @@ map <c-h> <c-w>h
 " Moving Buffers
 map <leader>h :bp<CR>
 map <leader>l :bn<CR>
-"map <c-b>h :bp<CR>
-"map <c-b>l :bn<CR>
-" Moving Tabs
-"map <c-t>h :tabp<CR>
-"map <c-t>l :tabn<CR>
 
 " press ; to issue commands in normal mode (no more shift holding)
 nnoremap ; :
@@ -330,11 +372,12 @@ command WQ wq
 command Wq wq
 command Q q
 
+au FileType c,cpp,objc,objcpp call rainbow#load()
+au BufRead,BufNewFile *.py setlocal foldmethod=indent
 "autocmd FileType html set ft=html.htmldjango " For SnipMate
 ""au BufRead,BufNewFile *.html set ft=html.htmldjango
 au BufRead,BufNewFile *.html set ft=htmldjango.html.javascript
 au BufNewFile,BufRead *.less set filetype=less
-au BufRead,BufNewFile *.md set filetype=markdown
+"au BufRead,BufNewFile *.md set filetype=markdown
 au BufNewFile,BufRead SCons* set filetype=scons
-
 
