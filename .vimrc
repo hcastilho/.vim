@@ -10,24 +10,37 @@ Bundle 'gmarik/vundle'
 
 " My Bundles
 Bundle  'altercation/vim-colors-solarized'
+Bundle  'scrooloose/nerdtree'
 Bundle  'ervandew/supertab'
-" Bundle  'fholgado/minibufexpl.vim'
 Bundle  'kien/ctrlp.vim'
-"Bundle  'kien/rainbow_parentheses.vim'
+Bundle  'majutsushi/tagbar'
+Bundle  'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+Bundle  'Lokaltog/vim-easymotion'
+Bundle  'plasticboy/vim-markdown'
+Bundle 'jszakmeister/markdown2ctags'
+" TODO should work now
+Bundle  'ivanov/vim-ipython'
+
+" Vim Tmux - Send code to another tmux pane
+Bundle  'benmills/vimux'
+Bundle  'julienr/vimux-pyutils'
+" C-c will paste and execute the currently selected block in ipython
+" C-b will execute the current cell in ipython A cell is similar to MATLAB's cell and is defined as the line ranging from the previous ## to the next ##
+
+
 Bundle  'oblitum/rainbow'
 Bundle  'jansenm/vim-cmake'
-" powerline is installed on the system
-" Bundle  'Lokaltog/powerline'
-Bundle  'Lokaltog/vim-easymotion'
-Bundle  'majutsushi/tagbar'
-Bundle  'msanders/snipmate.vim'
-" Bundle    'noahfrederick/Hemisu'
-Bundle  'plasticboy/vim-markdown'
-" Bundle  'tpope/vim-markdown'
+
+"interpret a file by function and cache file automatically
+Bundle  'MarcWeber/vim-addon-mw-utils'
+"Some utility functions for VIM
+Bundle  'tomtom/tlib_vim'
 Bundle  'rstacruz/sparkup'
-Bundle  'scrooloose/nerdtree'
+
+" Syntax checking
 Bundle  'scrooloose/syntastic'
-" Bundle  'stephenmckinney/vim-solarized-powerline'
+
 Bundle  'Townk/vim-autoclose'
 Bundle  'tpope/vim-fugitive'
 Bundle  'tpope/vim-repeat'
@@ -37,10 +50,17 @@ Bundle  'vim-scripts/django.vim'
 Bundle  'vim-scripts/scons.vim'
 Bundle  'vim-scripts/c.vim'
 Bundle  'vim-scripts/python.vim'
+Bundle  'groenewege/vim-less'
+
+" Multiple cursors
+Bundle  'terryma/vim-multiple-cursors'
+" C-n
+
 "Bundle  'vim-jp/cpp-vim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'mileszs/ack.vim'
 
 " Bundle    'kshenoy/vim-signature'
-" Bundle    'honza/vim-snippets'
 " Bundle    'vim-scripts/LanguageTool'
 " Bundle    'sjl/gundo.vim'
 " Bundle    'vim-scripts/Smartput'
@@ -246,20 +266,29 @@ filetype plugin indent on     " required!
     set foldlevel=100
     "let g:vimsyn_folding='af'
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Settings
+" Plugin Settings/Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ervandew/supertab "
-"""""""""""""""""""""
-" Tab
+" scrooloose/nerdtree -- Directory tree "
+"""""""""""""""""""""""""""""""""""""""""
+nnoremap <F1> :NERDTreeToggle<CR>
+
+
+" ervandew/supertab -- Completion "
+"""""""""""""""""""""""""""""""""""
+" <Tab> open, up
+" <S-Tab> down
+" <C-n/p> Up/Down
+
 
 " kien/ctrlp.vim "
 """"""""""""""""""
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-" Press <F5> to purge the cache for the current directory to get new files,
-" remove deleted files and apply new ignore options.
+nnoremap <F2> :CtrlPBuffer<CR>
+" <C-p> - search
 " Press <c-f> and <c-b> to cycle between modes.
 " Press <c-d> to switch to filename only search instead of full path.
 " Press <c-r> to switch to regexp mode.
@@ -270,63 +299,81 @@ let g:ctrlp_cmd = 'CtrlP'
 " Use <c-y> to create a new file and its parent directories.
 " Use <c-z> to mark/unmark multiple files and <c-o> to open them.
 
+
+" majutsushi/tagbar "
+"""""""""""""""""""""
+nmap <F8> :TagbarToggle<CR>
+" Add support for markdown files in tagbar.
+let g:tagbar_type_mkd = {
+    \ 'ctagstype': 'mkd',
+    \ 'ctagsbin' : '~/.vim/bundle/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
+
+" garbas/vim-snipmate honza/vim-snippets "
+""""""""""""""""""""""""""""""""""""""""""
+
+
+" Lokaltog/vim-easymotion "
+"""""""""""""""""""""""""""
+" <Leader><Leader>motion
+
+
 " kian/rainbow_parentheses.vim "
 """"""""""""""""""""""""""""""""
 "au Syntax * RainbowParenthesesLoadRound
 "au Syntax * RainbowParenthesesLoadSquare
 "au Syntax * RainbowParenthesesLoadBraces
 
-"Lokaltog/vim-easymotion"
-"""""""""""""""""""""""""
-" \\
 
-" majutsushi/tagbar "
-"""""""""""""""""""""
-" See mappings
 
-" msanders/snipmate.vim "
-"""""""""""""""""""""""""
 " rstacruz/sparkup "
 """"""""""""""""""""
 
-" scrooloose/nerdtree"
-"""""""""""""""""""""
-" See mappings
 
 " scrooloose/syntastic "
 """"""""""""""""""""""""
-" See mappings
+nmap <F7> :SyntasticCheck<CR>
 let g:syntastic_mode_map = { 'mode': 'passive',
                             \ 'active_filetypes': [],
                             \ 'passive_filetypes': [] }
 
-" tpope/vim-fugitive "
-""""""""""""""""""""""
 
-" tpope/vim-repeat "
-""""""""""""""""""""
-
-" tpope/vim-surround "
-""""""""""""""""""""""
-
-" tsaleh/vim-matchit "
-""""""""""""""""""""""
-
-
-
-
+" kszakmeister/vim-markdown "
+"""""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled=1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ]]: go to next header.
+" [[: go to previous header. Contrast with ]c.
+" ][: go to next sibling header if any.
+" []: go to previous sibling header if any.
+" ]c: go to Current header.
+" ]u: go to parent header (Up).
+
+
+" julienr/vimux-pyutils "
+"""""""""""""""""""""""""
+" C-c will paste and execute the currently selected block in ipython
+" C-b will execute the current cell in ipython A cell is similar to MATLAB's cell and is defined as the line ranging from the previous ## to the next ##
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <F1> :NERDTreeToggle<CR>
-nnoremap <F2> :buffers<CR>:buffer<Space>
 "nnoremap <F3> :!ctags -R<cr>
 map <F4> :w!<CR>:!aspell check %<CR>:e! %<CR> " Spellcheck
-map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR> " Run in python
+"map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR> " Run in python
+"map <F5> :IPython<CR>
 set pastetoggle=<F6> " Paste Mode
-nmap <F7> :SyntasticCheck<CR>
-nmap <F8> :TagbarToggle<CR>
 nmap <F9> :RainbowParenthesesToggle<CR>
 
 " Toggle display of toolbars in gvim
@@ -356,6 +403,7 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 ":help key-notation
 "set winaltkeys=no
+
 " Moving Buffers
 map <leader>h :bp<CR>
 map <leader>l :bn<CR>
@@ -363,8 +411,8 @@ map <leader>l :bn<CR>
 " press ; to issue commands in normal mode (no more shift holding)
 nnoremap ; :
 nnoremap ç :
-" use jj to quickly escape to normal mode while typing 
-inoremap jj <ESC>
+" use jj to quickly escape to normal mode while typing
+"inoremap jj <ESC>
 
 "" When tiping and we press Shift to long
 command W w
@@ -381,3 +429,22 @@ au BufNewFile,BufRead *.less set filetype=less
 "au BufRead,BufNewFile *.md set filetype=markdown
 au BufNewFile,BufRead SCons* set filetype=scons
 
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"setlocal omnifunc=pythoncomplete#Complete
+"setlocal completeopt=menuone,longest,preview
+"let g:SuperTabDefaultCompletionType="<c-x><c-]>"
+
+" Notes
+" <S-k> show manpage, python doc, etc
