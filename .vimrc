@@ -19,7 +19,6 @@ Bundle 'honza/vim-snippets'
 Bundle  'Lokaltog/vim-easymotion'
 Bundle  'plasticboy/vim-markdown'
 Bundle 'jszakmeister/markdown2ctags'
-" TODO should work now
 Bundle  'ivanov/vim-ipython'
 
 " Vim Tmux - Send code to another tmux pane
@@ -118,7 +117,6 @@ filetype plugin indent on     " required!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    filetype plugin indent on " load filetype plugins/indent settings
     set autochdir " always switch to the current file directory
     set backspace=indent,eol,start " make backspace a more flexible
     "set backup " make backup files
@@ -267,6 +265,19 @@ filetype plugin indent on     " required!
     "let g:vimsyn_folding='af'
 
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" File specific
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.py setlocal foldmethod=indent
+"autocmd FileType html set ft=html.htmldjango " For SnipMate
+""au BufRead,BufNewFile *.html set ft=html.htmldjango
+au BufRead,BufNewFile *.html set ft=htmldjango.html.javascript
+au BufNewFile,BufRead *.less set filetype=less
+"au BufRead,BufNewFile *.md set filetype=markdown
+au BufNewFile,BufRead SCons* set filetype=scons
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings/Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,6 +289,16 @@ nnoremap <F1> :NERDTreeToggle<CR>
 
 " ervandew/supertab -- Completion "
 """""""""""""""""""""""""""""""""""
+set omnifunc=syntaxcomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+""setlocal omnifunc=pythoncomplete#Complete
+""setlocal completeopt=menuone,longest,preview
+""let g:SuperTabDefaultCompletionType = '<C-X><C-O>'
+"set completeopt-=previewtj
+"let g:SuperTabDefaultCompletionType="context"
 " <Tab> open, up
 " <S-Tab> down
 " <C-n/p> Up/Down
@@ -320,9 +341,6 @@ let g:tagbar_type_mkd = {
 \ }
 
 
-" garbas/vim-snipmate honza/vim-snippets "
-""""""""""""""""""""""""""""""""""""""""""
-
 
 " Lokaltog/vim-easymotion "
 """""""""""""""""""""""""""
@@ -331,10 +349,8 @@ let g:tagbar_type_mkd = {
 
 " kian/rainbow_parentheses.vim "
 """"""""""""""""""""""""""""""""
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
-
+au FileType c,cpp,objc,objcpp call rainbow#load()
+nmap <F9> :RainbowParenthesesToggle<CR>
 
 
 " rstacruz/sparkup "
@@ -366,15 +382,73 @@ let g:vim_markdown_folding_disabled=1
 " C-b will execute the current cell in ipython A cell is similar to MATLAB's cell and is defined as the line ranging from the previous ## to the next ##
 
 
+" vim-scripts/python.vim "
+""""""""""""""""""""""""""
+"   ]t      -- Jump to beginning of block
+"   ]e      -- Jump to end of block
+"   ]v      -- Select (Visual Line Mode) block
+"   ]<      -- Shift block to left
+"   ]>      -- Shift block to right
+"   ]#      -- Comment selection
+"   ]u      -- Uncomment selection
+"   ]c      -- Select current/previous class
+"   ]d      -- Select current/previous function
+"   ]<up>   -- Jump to previous line with the same/lower indentation
+"   ]<down> -- Jump to next line with the same/lower indentation
+
+
+" garbas/vim-snipmate honza/vim-snippets "
+""""""""""""""""""""""""""""""""""""""""""
+" #!
+" imp
+" uni
+" from
+" docs
+" wh
+" dowh
+" with
+" cl
+" def
+" deff
+" defs
+" property
+" if
+" el
+" ei
+" for
+" cutf8
+" clatin1
+" cascii
+" ld
+" try
+" ifmain
+" _
+" pdb
+" ipdb
+" pdbbb
+" pudb
+" pprint
+" "
+" a=
+" test
+" testcase
+" fut
+" getopt
+" snippet glog
+" le
+" lg
+" lw
+" lc
+" li
+" epydoc
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
+" Other Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nnoremap <F3> :!ctags -R<cr>
 map <F4> :w!<CR>:!aspell check %<CR>:e! %<CR> " Spellcheck
-"map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR> " Run in python
-"map <F5> :IPython<CR>
 set pastetoggle=<F6> " Paste Mode
-nmap <F9> :RainbowParenthesesToggle<CR>
 
 " Toggle display of toolbars in gvim
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
@@ -420,15 +494,6 @@ command WQ wq
 command Wq wq
 command Q q
 
-au FileType c,cpp,objc,objcpp call rainbow#load()
-au BufRead,BufNewFile *.py setlocal foldmethod=indent
-"autocmd FileType html set ft=html.htmldjango " For SnipMate
-""au BufRead,BufNewFile *.html set ft=html.htmldjango
-au BufRead,BufNewFile *.html set ft=htmldjango.html.javascript
-au BufNewFile,BufRead *.less set filetype=less
-"au BufRead,BufNewFile *.md set filetype=markdown
-au BufNewFile,BufRead SCons* set filetype=scons
-
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -441,10 +506,6 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     execfile(activate_this, dict(__file__=activate_this))
 EOF
-
-"setlocal omnifunc=pythoncomplete#Complete
-"setlocal completeopt=menuone,longest,preview
-"let g:SuperTabDefaultCompletionType="<c-x><c-]>"
 
 " Notes
 " <S-k> show manpage, python doc, etc
