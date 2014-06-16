@@ -18,7 +18,7 @@ Bundle  'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 Bundle  'Lokaltog/vim-easymotion'
 Bundle  'plasticboy/vim-markdown'
-Bundle 'jszakmeister/markdown2ctags'
+" Bundle 'jszakmeister/markdown2ctags'
 Bundle  'ivanov/vim-ipython'
 
 " Vim Tmux - Send code to another tmux pane
@@ -44,7 +44,7 @@ Bundle  'Townk/vim-autoclose'
 Bundle  'tpope/vim-fugitive'
 Bundle  'tpope/vim-repeat'
 Bundle  'tpope/vim-surround'
-Bundle  'tsaleh/vim-matchit'
+Bundle  'edsono/vim-matchit'
 Bundle  'vim-scripts/django.vim'
 Bundle  'vim-scripts/scons.vim'
 Bundle  'vim-scripts/c.vim'
@@ -52,7 +52,7 @@ Bundle  'vim-scripts/python.vim'
 Bundle  'groenewege/vim-less'
 
 " Multiple cursors
-Bundle  'terryma/vim-multiple-cursors'
+" Bundle  'terryma/vim-multiple-cursors'
 " C-n
 
 "Bundle  'vim-jp/cpp-vim'
@@ -117,7 +117,7 @@ filetype plugin indent on     " required!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    set autochdir " always switch to the current file directory
+    "set autochdir " always switch to the current file directory
     set backspace=indent,eol,start " make backspace a more flexible
     "set backup " make backup files
     "set backupdir=~/.vim/backup " where to put backup files
@@ -217,30 +217,30 @@ filetype plugin indent on     " required!
     set tabstop=4 " real tabs should be 8, and they will show with
     " set list on
     "
-    " HTML (tab width 2 chr, no wrapping)
-    autocmd FileType html setl sw=2
-    autocmd FileType html setl ts=2
-    autocmd FileType html setl sts=2
-    autocmd FileType html setl textwidth=0
-    " XHTML (tab width 2 chr, no wrapping)
-    autocmd FileType xhtml setl sw=2
-    autocmd FileType xhtml setl ts=2
-    autocmd FileType xhtml setl sts=2
-    autocmd FileType xhtml setl textwidth=0
-    " CSS (tab width 2 chr, wrap at 79th char)
-    autocmd FileType css setl sw=2
-    autocmd FileType css setl ts=2
-    autocmd FileType css setl sts=2
-    " JS (tab width 2 chr, wrap at 79th char)
-    autocmd FileType javascript setl sw=2
-    autocmd FileType javascript setl ts=2
-    autocmd FileType javascript setl sts=2
-    " HTML DJANGO (tab width 2 chr, wrap at 79th char)
-    autocmd FileType htmldjango setl sw=2
-    autocmd FileType htmldjango setl ts=2
-    autocmd FileType htmldjango setl sts=2
-    " PYTHON (tab width 2 chr, wrap at 79th char)
-    "autocmd FileType python setl textwidth=79
+    "" HTML (tab width 2 chr, no wrapping)
+    "autocmd FileType html setl sw=2
+    "autocmd FileType html setl ts=2
+    "autocmd FileType html setl sts=2
+    "autocmd FileType html setl textwidth=0
+    "" XHTML (tab width 2 chr, no wrapping)
+    "autocmd FileType xhtml setl sw=2
+    "autocmd FileType xhtml setl ts=2
+    "autocmd FileType xhtml setl sts=2
+    "autocmd FileType xhtml setl textwidth=0
+    "" CSS (tab width 2 chr, wrap at 79th char)
+    "autocmd FileType css setl sw=2
+    "autocmd FileType css setl ts=2
+    "autocmd FileType css setl sts=2
+    "" JS (tab width 2 chr, wrap at 79th char)
+    "autocmd FileType javascript setl sw=2
+    "autocmd FileType javascript setl ts=2
+    "autocmd FileType javascript setl sts=2
+    "" HTML DJANGO (tab width 2 chr, wrap at 79th char)
+    "autocmd FileType htmldjango setl sw=2
+    "autocmd FileType htmldjango setl ts=2
+    "autocmd FileType htmldjango setl sts=2
+    "" PYTHON (tab width 2 chr, wrap at 79th char)
+    ""autocmd FileType python setl textwidth=79
 
     """" Language Specifics """
         " latex
@@ -325,20 +325,20 @@ nnoremap <F2> :CtrlPBuffer<CR>
 """""""""""""""""""""
 nmap <F8> :TagbarToggle<CR>
 " Add support for markdown files in tagbar.
-let g:tagbar_type_mkd = {
-    \ 'ctagstype': 'mkd',
-    \ 'ctagsbin' : '~/.vim/bundle/markdown2ctags/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
+" let g:tagbar_type_mkd = {
+"     \ 'ctagstype': 'mkd',
+"     \ 'ctagsbin' : '~/.vim/bundle/markdown2ctags/markdown2ctags.py',
+"     \ 'ctagsargs' : '-f - --sort=yes',
+"     \ 'kinds' : [
+"         \ 's:sections',
+"         \ 'i:images'
+"     \ ],
+"     \ 'sro' : '|',
+"     \ 'kind2scope' : {
+"         \ 's' : 'section',
+"     \ },
+"     \ 'sort': 0,
+" \ }
 
 
 
